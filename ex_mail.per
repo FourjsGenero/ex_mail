@@ -1,0 +1,88 @@
+LAYOUT (TEXT="Mail Examples")
+VBOX
+GROUP (TEXT="Mail Details")
+GRID
+{
+To       [f02                         ]
+CC       [f03                         ]
+Bcc      [f04                         ]
+Subject  [f05                         ]
+Body     [f06                         ]
+         [                            ]
+         [                            ]
+}
+END
+END
+FOLDER
+PAGE (TEXT="Mail To Link")
+GRID
+{
+[b01                       ]
+[l01                       ]
+}
+END
+END
+
+PAGE (TEXT="Button + Launchurl frontcall")
+GRID
+{
+[b02                       ]
+[b03                       ]
+}
+END #GRID
+END #PAGE
+
+PAGE (TEXT="Mail Command")
+GRID
+{
+From     [f01                         ]
+Command  [f07                         ]
+         [                            ]
+         [                            ]
+         [b04                         ]
+Output   [f09                         ]
+         [                            ]
+         [                            ]
+}
+END
+END
+
+PAGE (TEXT="SMTP")
+GRID
+{
+Server   [f10                         ] 
+Port     [f11                         ]
+Username [f12                         ]
+Password [f13                         ]  
+         [b05                         ]
+} 
+END
+END
+END #VBOX
+END #FOLDER
+END #LAYOUT
+ATTRIBUTES
+f01 = formonly.from;
+f02 = formonly.to;
+f03 = formonly.cc;
+f04 = formonly.bcc;
+f05 = formonly.subject;
+TEXTEDIT f06 = formonly.body;
+
+TEXTEDIT f07 = formonly.cmd;
+TEXTEDIT f09 = formonly.output;
+
+EDIT f10 = formonly.host;
+EDIT f11 = formonly.port;
+EDIT f12 = formonly.username;
+EDIT f13 = formonly.password;
+
+LABEL l01 = formonly.mailto, STYLE="html";
+
+BUTTON b01: refresh, TEXT="Click to set link";
+BUTTON b02: launchurl1, TEXT="Mail";
+BUTTON b03: launchurl2, TEXT="Mail", STYLE="link";
+
+BUTTON b04: cmd_send, TEXT="Send";
+BUTTON b05: smpt_send, TEXT="Send";
+         

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ANSI_X3.4-1968"?>
+<StyleList>
+  <Style name="Window">
+     <StyleAttribute name="windowType" value="normal" />
+  </Style>
+  <Style name="Label.html">
+     <StyleAttribute name="textFormat" value="html" />
+  </Style>
+  <Style name="Button.link">
+     <StyleAttribute name="buttonType" value="link" />
+  </Style>
+</StyleList>
