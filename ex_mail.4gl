@@ -31,18 +31,21 @@ DEFINE i, res INTEGER
 DEFINE tok base.StringTokenizer
 
  
+  
+    LET mail.to = "test_from@example.com"
     LET mail.cc = "test_cc@example.com"
     LET mail.bcc = "test_bcc@example.com"
     LET mail.subject = "Test Subject"
     LET mail.body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
-
     LET cmd.from = "test_from@example.com"
     LET cmd.cmd = "echo \"%6\" | mail -s %5 -c %3 -b %4 -f %2 %1"
 
-    LET smtp.host = "smtp.gmail.com"
-    LET smtp.port = "465"
-    
+    -- To test on SMTP set up a free account at smtp2go.com
+    LET smtp.host = "mail.smtp2go.com"
+    LET smtp.port = "2525"
+    LET smtp.username = "username"  -- replace with your account username
+    # LET smtp.password = "password"         -- no password required if sent from my home office
     
     CALL ui.Interface.loadStyles("ex_mail")
     CLOSE WINDOW SCREEN
@@ -70,17 +73,17 @@ DEFINE tok base.StringTokenizer
             -- In text mode, each line would be terminated by \r\r\n on Windows.
             CALL mc.openClientSocket(smtp.host, smtp.port, "ub", 5)
             CALL readSmtpAnswer(mc) RETURNING res, result
-            CALL smtpSend(mc, "HELO xxx\r") RETURNING res, result
-            CALL smtpSend(mc, SFMT("MAIL FROM: %1\r", cmd.from)) RETURNING res, result
+            CALL smtpSend(mc, "HELO ok\r") RETURNING res, result
+            CALL smtpSend(mc, SFMT("MAIL FROM: %1\r", smtp.username)) RETURNING res, result
             CALL smtpSend(mc, SFMT("RCPT TO: %1\r", mail.to)) RETURNING res, result
             CALL smtpSend(mc, "DATA\r") RETURNING res, result
             DISPLAY "Sending mail body:"
             CALL mc.writeLine(SFMT("Subject: %1\r", mail.subject))
             LET tok = base.StringTokenizer.create(mail.body,"\n")
             WHILE tok.hasMoreTokens()
-                CALL mc.writeLine(tok.nextToken())
+                CALL mc.writeLine(SFMT("%1\r",tok.nextToken()))
             END WHILE
-            CALL mc.writeLine(".")
+            CALL mc.writeLine(".\r")
             CALL readSmtpAnswer(mc) RETURNING res, result
             DISPLAY "  Result: ", res
             CALL smtpSend(mc, "QUIT\r") RETURNING res, result
@@ -130,6 +133,7 @@ FUNCTION readSmtpAnswer(ch)
             LET msg=msg.append(line.subString(4, line.getLength()))
         END IF
     END WHILE
+    RETURN 0, "NEVER GET HERE"
 END FUNCTION
 
 
