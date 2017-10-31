@@ -44,7 +44,7 @@ DEFINE tok base.StringTokenizer
     -- To test on SMTP set up a free account at smtp2go.com
     LET smtp.host = "mail.smtp2go.com"
     LET smtp.port = "2525"
-    LET smtp.username = "username"  -- replace with your account username
+    LET smtp.username = "reuben@4js.com.au"  -- replace with your account username
     # LET smtp.password = "password"         -- no password required if sent from my home office
     
     CALL ui.Interface.loadStyles("ex_mail")
