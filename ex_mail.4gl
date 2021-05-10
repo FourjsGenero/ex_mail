@@ -27,10 +27,10 @@ DEFINE result STRING
 DEFINE l_cmd STRING
 
 DEFINE mc base.Channel
-DEFINE i, res INTEGER
+DEFINE res INTEGER
 DEFINE tok base.StringTokenizer
 
- 
+    OPTIONS INPUT WRAP
   
     LET mail.to = "test_from@example.com"
     LET mail.cc = "test_cc@example.com"

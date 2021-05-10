@@ -3,8 +3,9 @@
   <Style name="Window">
      <StyleAttribute name="windowType" value="normal" />
   </Style>
-  <Style name="Label.html">
+  <Style name="Label.mailto">
      <StyleAttribute name="textFormat" value="html" />
+     <StyleAttribute name="sanitize" value="no" />
   </Style>
   <Style name="Button.link">
      <StyleAttribute name="buttonType" value="link" />
