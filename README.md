@@ -21,3 +21,6 @@ Interact with an SMTP Server
 
 <img alt="SMTP Server" src="https://user-images.githubusercontent.com/13615993/32223097-ed8ab476-bea0-11e7-8e30-230e6e554390.png" width="50%" />
 
+Use the composeMail Front-call added in Genero 4.01
+
+https://4js.com/online_documentation/fjs-fgl-manual-html/#fgl-topics/c_fgl_frontcall_standard_composemail.html
