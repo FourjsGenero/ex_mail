@@ -88,6 +88,9 @@ DEFINE tok base.StringTokenizer
             DISPLAY "  Result: ", res
             CALL smtpSend(mc, "QUIT\r") RETURNING res, result
             CALL mc.close()
+
+        ON ACTION frontcall
+            CALL ui.Interface.frontCall("standard","composeMail",[mail.to,mail.subject, mail.body, mail.cc, mail.bcc],[result])
             
         AFTER INPUT
             IF int_flag THEN
